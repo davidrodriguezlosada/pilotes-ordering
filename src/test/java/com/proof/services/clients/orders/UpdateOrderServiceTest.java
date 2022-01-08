@@ -28,16 +28,14 @@ import static org.mockito.Mockito.when;
 class UpdateOrderServiceTest {
 
     UpdateOrderService updateOrderService;
-    ClientRepository clientRepository;
     OrderRepository orderRepository;
     OrderMapper orderMapper;
 
     @BeforeEach
     void setup() {
-        clientRepository = mock(ClientRepository.class);
         orderRepository = mock(OrderRepository.class);
         orderMapper = mock(OrderMapper.class);
-        updateOrderService = new UpdateOrderService(clientRepository, orderRepository, orderMapper);
+        updateOrderService = new UpdateOrderService(orderRepository, orderMapper);
     }
 
     @Test
@@ -46,9 +44,6 @@ class UpdateOrderServiceTest {
         String clientCode = "0001";
         String orderNumber = "OR-0001";
         UpdateOrderRequestDto updateOrderRequestDto = UpdateOrderRequestDtoMother.validRequest();
-
-        // and a client mock
-        when(clientRepository.findByCode(clientCode)).thenReturn(Optional.of(ClientMother.validClient()));
 
         // and a recent order mock
         Order order = OrderMother.validOrder();
@@ -66,31 +61,13 @@ class UpdateOrderServiceTest {
     }
 
     @Test
-    void updateOrderWrongClient() {
+    void updateOrderWrongClientOrOrder() {
         // given a set of parameters
         String clientCode = "0001";
         String orderNumber = "OR-0001";
         UpdateOrderRequestDto updateOrderRequestDto = UpdateOrderRequestDtoMother.validRequest();
 
-        // and client doesn't exist
-        when(clientRepository.findByCode(clientCode)).thenReturn(null);
-
-        // then
-        assertThrows(NotFoundException.class, () ->
-                updateOrderService.updateOrder(clientCode, orderNumber, updateOrderRequestDto));
-    }
-
-    @Test
-    void updateOrderWrongOrder() {
-        // given a set of parameters
-        String clientCode = "0001";
-        String orderNumber = "OR-0001";
-        UpdateOrderRequestDto updateOrderRequestDto = UpdateOrderRequestDtoMother.validRequest();
-
-        // and a client mock
-        when(clientRepository.findByCode(clientCode)).thenReturn(Optional.of(ClientMother.validClient()));
-
-        // and order doesn't exist
+        // and order or client doesn't exist
         when(orderRepository.findByNumberAndClientCode(orderNumber, clientCode)).thenReturn(Optional.empty());
 
         // then
@@ -104,9 +81,6 @@ class UpdateOrderServiceTest {
         String clientCode = "0001";
         String orderNumber = "OR-0001";
         UpdateOrderRequestDto updateOrderRequestDto = UpdateOrderRequestDtoMother.validRequest();
-
-        // and a client mock
-        when(clientRepository.findByCode(clientCode)).thenReturn(Optional.of(ClientMother.validClient()));
 
         // and an old order mock
         Order order = OrderMother.validOrder();
