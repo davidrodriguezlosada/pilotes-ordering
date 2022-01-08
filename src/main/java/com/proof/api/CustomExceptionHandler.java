@@ -18,6 +18,9 @@ import java.util.stream.Collectors;
 
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * This class will handle all the errors returned by our API. Check {@link ControllerAdvice} for further information
+ */
 @Log4j2
 @ControllerAdvice
 public class CustomExceptionHandler {

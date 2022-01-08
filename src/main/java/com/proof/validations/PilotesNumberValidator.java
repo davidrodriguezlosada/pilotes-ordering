@@ -6,6 +6,9 @@ import java.util.List;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * Class that handles the validation of the correct pilotes number of an order.
+ */
 public class PilotesNumberValidator implements ConstraintValidator<ValidPilotesNumber, Integer> {
 
     private final List<Integer> validPilotesNumber = Arrays.asList(5, 10, 15);

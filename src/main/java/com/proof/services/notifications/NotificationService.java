@@ -15,6 +15,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * This notification service will handle event notifications to external systems. Currently it only stores events as
+ * JSON in the database, but this same approach can be used to push notifications to an external message queue.
+ */
 @Log4j2
 @Service
 public class NotificationService {
@@ -51,14 +55,14 @@ public class NotificationService {
 
     @Data
     @AllArgsConstructor
-    protected static class CreateOrderRequest {
+    private static class CreateOrderRequest {
         String clientCode;
         CreateOrderRequestDto createOrderRequestDto;
     }
 
     @Data
     @AllArgsConstructor
-    protected static class UpdateOrderRequest {
+    private static class UpdateOrderRequest {
         String clientCode;
         String orderCode;
         UpdateOrderRequestDto updateOrderRequestDto;

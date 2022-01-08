@@ -9,6 +9,10 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
+/**
+ * Annotation to check the correct number of pilotes of an order. The validation is done in the
+ * {@link PilotesNumberValidator} class.
+ */
 @Documented
 @Constraint(validatedBy = PilotesNumberValidator.class)
 @Target( { ElementType.METHOD, ElementType.FIELD })
