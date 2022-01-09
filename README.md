@@ -121,7 +121,7 @@ are:
 
 ### API documentation
 
-API documentation can be accessed on http://localhost:8080/swagger-ui once you launch the application.
+API documentation can be accessed on http://localhost:8080/swagger-ui.html once you launch the application.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
