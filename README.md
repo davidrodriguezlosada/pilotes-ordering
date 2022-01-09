@@ -34,7 +34,7 @@ meatball stew. Each time an order is created or modified, the project notifies t
 cooking of the pilotes. Currently the notification system is handled just inserting the events in the database in JSON
 format, but this could be handled by sending the notifications to a message queue system, like RabbitMQ or Kafka.
 
-The project includes an example implementation of some standard features like:
+The project includes an example implementation of some features like:
 
 * REST controllers.
 * OpenAPI documentation provided by [springdoc-openapi-ui](https://springdoc.org/).
@@ -49,6 +49,7 @@ to handle error responses.
 * Custom bean validations using
   java [ConstraintValidation](https://docs.oracle.com/javaee/7/api/javax/validation/ConstraintValidator.html).
 * A [Maven Wrapper](https://maven.apache.org/wrapper/).
+* A generic filtering for APIs based on path parameters and parsed automatically into [Hibernate Criterias](https://docs.jboss.org/hibernate/stable/entitymanager/reference/en/html/querycriteria.html).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
