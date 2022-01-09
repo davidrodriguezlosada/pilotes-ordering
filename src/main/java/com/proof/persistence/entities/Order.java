@@ -1,10 +1,11 @@
-package com.proof.domain;
+package com.proof.persistence.entities;
 
 import com.proof.validations.ValidPilotesNumber;
 
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -28,9 +29,10 @@ public class Order {
 
     @NotBlank
     @Size(max = 50)
+    @Column(unique = true)
     private String number;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @NotNull
     private Client client;
 

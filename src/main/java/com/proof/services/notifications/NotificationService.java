@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.proof.api.controllers.clients.orders.requests.CreateOrderRequestDto;
 import com.proof.api.controllers.clients.orders.requests.UpdateOrderRequestDto;
-import com.proof.domain.Event;
-import com.proof.repositories.EventRepository;
+import com.proof.persistence.entities.Event;
+import com.proof.persistence.repositories.EventRepository;
 
 import org.springframework.stereotype.Service;
 

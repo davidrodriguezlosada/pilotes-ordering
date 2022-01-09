@@ -1,6 +1,6 @@
-package com.proof.repositories;
+package com.proof.persistence.repositories;
 
-import com.proof.domain.Client;
+import com.proof.persistence.entities.Client;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

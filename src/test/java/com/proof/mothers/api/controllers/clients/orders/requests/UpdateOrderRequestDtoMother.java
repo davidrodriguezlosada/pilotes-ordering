@@ -1,7 +1,7 @@
 package com.proof.mothers.api.controllers.clients.orders.requests;
 
 import com.proof.api.controllers.clients.orders.requests.UpdateOrderRequestDto;
-import com.proof.mothers.domain.AddressDtoMother;
+import com.proof.mothers.api.dtos.AddressDtoMother;
 
 public class UpdateOrderRequestDtoMother {
 

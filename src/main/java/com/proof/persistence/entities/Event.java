@@ -1,4 +1,4 @@
-package com.proof.domain;
+package com.proof.persistence.entities;
 
 import java.util.Date;
 

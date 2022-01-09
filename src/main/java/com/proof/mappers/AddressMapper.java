@@ -1,7 +1,7 @@
 package com.proof.mappers;
 
 import com.proof.api.dtos.AddressDto;
-import com.proof.domain.Address;
+import com.proof.persistence.entities.Address;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

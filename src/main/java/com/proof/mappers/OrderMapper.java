@@ -3,7 +3,7 @@ package com.proof.mappers;
 import com.proof.api.controllers.clients.orders.requests.CreateOrderRequestDto;
 import com.proof.api.controllers.clients.orders.requests.UpdateOrderRequestDto;
 import com.proof.api.dtos.OrderDto;
-import com.proof.domain.Order;
+import com.proof.persistence.entities.Order;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

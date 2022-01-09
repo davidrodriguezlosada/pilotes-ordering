@@ -2,12 +2,12 @@ package com.proof.services.clients.orders;
 
 import com.proof.api.controllers.clients.orders.requests.CreateOrderRequestDto;
 import com.proof.api.dtos.OrderDto;
-import com.proof.domain.Client;
-import com.proof.domain.Order;
 import com.proof.exceptions.NotFoundException;
 import com.proof.mappers.OrderMapper;
-import com.proof.repositories.ClientRepository;
-import com.proof.repositories.OrderRepository;
+import com.proof.persistence.entities.Client;
+import com.proof.persistence.entities.Order;
+import com.proof.persistence.repositories.ClientRepository;
+import com.proof.persistence.repositories.OrderRepository;
 
 import org.springframework.stereotype.Service;
 

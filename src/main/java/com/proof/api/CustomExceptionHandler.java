@@ -1,5 +1,8 @@
 package com.proof.api;
 
+import com.proof.exceptions.BaseUncheckedException;
+import com.proof.exceptions.FilterCriteriaException;
+import com.proof.exceptions.FilterParseException;
 import com.proof.exceptions.NotFoundException;
 import com.proof.exceptions.ValidationException;
 
@@ -30,11 +33,11 @@ public class CustomExceptionHandler {
     private static final String BINDING_ERROR = "Request validation error. Check errors for more information.";
     private static final String UNEXPECTED_ERROR = "An unexpected error has occurred";
 
-    @ExceptionHandler(value = {NotFoundException.class})
+    @ExceptionHandler(value = {NotFoundException.class, FilterCriteriaException.class, FilterParseException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
     protected ResponseEntity<ErrorResponse> handleNotFoundException(
-            NotFoundException notFoundException, ServletWebRequest request) {
-        return handleCommonException(notFoundException, notFoundException.getMessage(), request, HttpStatus.NOT_FOUND);
+            BaseUncheckedException baseUncheckedException, ServletWebRequest request) {
+        return handleCommonException(baseUncheckedException, baseUncheckedException.getMessage(), request, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = {ValidationException.class})

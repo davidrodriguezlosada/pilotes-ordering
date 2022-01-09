@@ -33,7 +33,8 @@ public class CreateOrderController {
     }
 
     @Operation(summary = "Creates a new order",
-            description = "<h2>Creates a new order.</h2>")
+            description = "<h2>Creates a new order.</h2><br><br>" +
+                    "Remember that orders should have different order numbers.")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",

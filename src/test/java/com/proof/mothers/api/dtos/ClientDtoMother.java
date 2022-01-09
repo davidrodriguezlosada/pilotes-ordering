@@ -1,4 +1,4 @@
-package com.proof.mothers.domain;
+package com.proof.mothers.api.dtos;
 
 import com.proof.api.dtos.ClientDto;
 

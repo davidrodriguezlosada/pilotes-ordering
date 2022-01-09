@@ -1,14 +1,13 @@
 package com.proof.services.clients.orders;
 
 import com.proof.api.controllers.clients.orders.requests.CreateOrderRequestDto;
-import com.proof.domain.Order;
 import com.proof.exceptions.NotFoundException;
 import com.proof.mappers.OrderMapper;
 import com.proof.mothers.api.controllers.clients.orders.requests.CreateOrderRequestDtoMother;
-import com.proof.mothers.entities.ClientMother;
-import com.proof.mothers.entities.OrderMother;
-import com.proof.repositories.ClientRepository;
-import com.proof.repositories.OrderRepository;
+import com.proof.mothers.persistence.entities.ClientMother;
+import com.proof.mothers.persistence.entities.OrderMother;
+import com.proof.persistence.repositories.ClientRepository;
+import com.proof.persistence.repositories.OrderRepository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

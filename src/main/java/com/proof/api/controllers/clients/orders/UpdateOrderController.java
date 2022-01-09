@@ -33,7 +33,8 @@ public class UpdateOrderController {
     }
 
     @Operation(summary = "Updates an existing order",
-            description = "<h2>Updates an existing order.</h2> <br> Orders can't be updated after 5 minutes from it's creation")
+            description = "<h2>Updates an existing order.</h2> <br>" +
+                    "Orders can't be updated after 5 minutes from it's creation")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",

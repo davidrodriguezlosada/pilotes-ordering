@@ -1,5 +1,6 @@
-package com.proof.domain;
+package com.proof.persistence.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,26 +11,26 @@ import lombok.Data;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-@Entity(name = "ADDRESSES")
+@Entity(name = "CLIENTS")
 @Data
-public class Address {
+public class Client {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private Long id;
+    private long id;
+
+    @NotBlank
+    @Size(max = 50)
+    @Column(unique = true)
+    private String code;
 
     @NotBlank
     @Size(max = 255)
-    private String street;
+    private String firstName;
 
     @NotBlank
     @Size(max = 255)
-    private String postcode;
+    private String lastName;
 
-    @NotBlank
-    @Size(max = 255)
-    private String city;
-
-    @NotBlank
-    @Size(max = 255)
-    private String country;
+    @Size(max = 50)
+    private String telephone;
 }

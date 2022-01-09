@@ -1,6 +1,6 @@
-package com.proof.mothers.entities;
+package com.proof.mothers.persistence.entities;
 
-import com.proof.domain.Address;
+import com.proof.persistence.entities.Address;
 
 public class AddressMother {
 
