@@ -1,6 +1,5 @@
 package com.proof.api.controllers.orders;
 
-import com.proof.api.filtering.parser.ApiFilterParser;
 import com.proof.services.orders.SearchOrdersService;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -30,12 +29,10 @@ class SearchOrdersControllerTest {
     SearchOrdersController searchOrdersController;
     @Mock
     SearchOrdersService searchOrdersService;
-    @Mock
-    ApiFilterParser apiFilterParser;
 
     @BeforeEach
     void setup() {
-        this.searchOrdersController = new SearchOrdersController(searchOrdersService, apiFilterParser);
+        this.searchOrdersController = new SearchOrdersController(searchOrdersService);
         this.mockMvc = MockMvcBuilders.standaloneSetup(searchOrdersController).build();
     }
 
@@ -49,7 +46,7 @@ class SearchOrdersControllerTest {
                 .andExpect(status().isOk());
 
         // then
-        verify(searchOrdersService, times(1)).search();
+        verify(searchOrdersService, times(1)).search(any());
     }
 
 

@@ -1,13 +1,13 @@
 package com.proof.services.orders;
 
+import com.github.tennaito.rsql.jpa.JpaCriteriaQueryVisitor;
 import com.proof.api.dtos.OrderDto;
-import com.proof.api.filtering.expressions.Expression;
 import com.proof.mappers.OrderMapper;
 import com.proof.persistence.entities.Client;
 import com.proof.persistence.entities.Order;
-import com.proof.persistence.filtering.ExpressionToCriteria;
 import com.proof.persistence.repositories.OrderRepository;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +18,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
+import cz.jirutka.rsql.parser.RSQLParser;
+import cz.jirutka.rsql.parser.ast.Node;
+import cz.jirutka.rsql.parser.ast.RSQLVisitor;
+
 @Service
 public class SearchOrdersService {
 
@@ -26,14 +30,11 @@ public class SearchOrdersService {
 
     OrderRepository orderRepository;
     OrderMapper orderMapper;
-    ExpressionToCriteria<Client> expressionToCriteria;
 
     public SearchOrdersService(OrderRepository orderRepository,
-                               OrderMapper orderMapper,
-                               ExpressionToCriteria<Client> expressionToCriteria) {
+                               OrderMapper orderMapper) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
-        this.expressionToCriteria = expressionToCriteria;
     }
 
     public List<OrderDto> search() {
@@ -42,10 +43,23 @@ public class SearchOrdersService {
                 .collect(Collectors.toList());
     }
 
-    public List<OrderDto> search(Expression<Object, Object> expression) {
+    public List<OrderDto> search(String clientFilter) {
+        if(StringUtils.isBlank(clientFilter)) {
+            return search();
+        } else {
+            return searchWithFilter(clientFilter);
+        }
+    }
+
+    private List<OrderDto> searchWithFilter(String clientFilter) {
+        // 1.Create the JPA Visitor
+        RSQLVisitor<CriteriaQuery<Client>, EntityManager> visitor = new JpaCriteriaQueryVisitor<>();
+        // 2.Parse a RSQL into a Node
+        Node rootNode = new RSQLParser().parse(clientFilter);
+        // 3.Create CriteriaQuery
+        CriteriaQuery<Client> criteriaQuery = rootNode.accept(visitor, entityManager);
 
         //TODO: Next step, make a single DB call using multiple entities in the criteria.
-        CriteriaQuery<?> criteriaQuery = expressionToCriteria.createCriteria(expression, Client.class);
         List<?> clients = entityManager.createQuery(criteriaQuery).getResultList();
 
         Iterable<Order> orders = orderRepository.findAll();

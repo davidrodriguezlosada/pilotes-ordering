@@ -1,9 +1,6 @@
 package com.proof.services.orders;
 
 import com.proof.api.dtos.OrderDto;
-import com.proof.api.filtering.expressions.CompareExpression;
-import com.proof.api.filtering.expressions.Expression;
-import com.proof.api.filtering.operators.CompareOperator;
 import com.proof.mothers.persistence.entities.OrderMother;
 import com.proof.persistence.repositories.OrderRepository;
 
@@ -52,10 +49,10 @@ class SearchOrdersServiceTest {
         orderRepository.save(OrderMother.validOrder());
 
         // and an expression
-        Expression<Object, Object> expression = new CompareExpression<>("firstName", "unknown", CompareOperator.EQUAL);
+        String clientFilter = "firstName==unknown";
 
         // when
-        List<OrderDto> orderDtos = searchOrdersService.search(expression);
+        List<OrderDto> orderDtos = searchOrdersService.search(clientFilter);
 
         assertAll(
                 () -> assertNotNull(orderDtos),
