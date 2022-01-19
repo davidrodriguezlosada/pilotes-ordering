@@ -49,7 +49,7 @@ to handle error responses.
 * Custom bean validations using
   java [ConstraintValidation](https://docs.oracle.com/javaee/7/api/javax/validation/ConstraintValidator.html).
 * A [Maven Wrapper](https://maven.apache.org/wrapper/).
-* A generic filtering for APIs based on path parameters and parsed automatically into [Hibernate Criterias](https://docs.jboss.org/hibernate/stable/entitymanager/reference/en/html/querycriteria.html).
+* [RSQL library](https://github.com/jirutka/rsql-parser) for filtering API and [JPA queries](https://github.com/tennaito/rsql-jpa)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
